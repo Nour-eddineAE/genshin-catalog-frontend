@@ -1,25 +1,72 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from "vue-router";
+
+import Characters from "../views/characters-menu.vue";
+import Weapons from "../views/weapons-menu.vue";
+import Artifacts from "../views/artifacts-menu.vue";
+import MainMenu from "../views/Main-menu.vue";
+import CharacterExpanded from "../views/character-expanded.vue";
+import WeaponExpanded from "../views/weapon-expanded.vue";
+import ArtifactExpanded from "../views/artifact-expanded.vue";
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "MainMenu",
+    components: {
+      operations: MainMenu,
+    },
+    children: [
+      {
+        path: "/",
+        redirect: "/characters",
+      },
+      {
+        // these three components are what we want to render in the router-view named gallery
+        path: "/characters",
+        name: "Characters",
+        components: {
+          gallery: Characters,
+        },
+      },
+      {
+        path: "/weapons",
+        name: "Weapons",
+        components: {
+          gallery: Weapons,
+        },
+      },
+      {
+        path: "/artifacts",
+        name: "Artifacts",
+        components: {
+          gallery: Artifacts,
+        },
+      },
+    ],
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+    path: "/characters/expand",
+    components: {
+      operations: CharacterExpanded,
+    },
+  },
+  {
+    path: "/weapons/expand",
+    components: {
+      operations: WeaponExpanded,
+    },
+  },
+  {
+    path: "/artifacts/expand",
+    components: {
+      operations: ArtifactExpanded,
+    },
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
