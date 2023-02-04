@@ -35,8 +35,12 @@
 
         <div class="info_controls">
           <!-- TODO update and delete character -->
-          <a href="">Update character</a>
-          <a href="">Delete character</a>
+          <router-link
+            to="/characters/update"
+            @click="$store.commit('setCharacterFormItem', item)"
+            >Update character</router-link
+          >
+          <router-link to="">Delete character</router-link>
         </div>
       </div>
     </section>

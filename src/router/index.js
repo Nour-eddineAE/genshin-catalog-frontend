@@ -7,7 +7,7 @@ import MainMenu from "../views/Main-menu.vue";
 import CharacterExpanded from "../views/character-expanded.vue";
 import WeaponExpanded from "../views/weapon-expanded.vue";
 import ArtifactExpanded from "../views/artifact-expanded.vue";
-
+import CharacterForm from "../views/character-form.vue";
 const routes = [
   {
     path: "/",
@@ -60,6 +60,13 @@ const routes = [
     path: "/artifacts/expand",
     components: {
       operations: ArtifactExpanded,
+    },
+  },
+  {
+    path: "/characters/create",
+    alias: ["/characters/update"],
+    components: {
+      operations: CharacterForm,
     },
   },
 ];

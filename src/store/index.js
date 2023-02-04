@@ -1,64 +1,20 @@
 import { createStore } from "vuex";
-import Api from "../services/api";
+import state from "./state";
+import actions from "./actions";
+import mutations from "./mutations";
+import VuexPersistence from "vuex-persist";
 
+// state persistance
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage,
+});
 export default createStore({
-  state: {
-    // header
-    appName: "Genshin catalog",
-    // navigation
-    navBarItems: [
-      {
-        fileName: "cat_characters",
-        alt: "characters",
-        routerLink: "characters",
-      },
-      {
-        fileName: "cat_weapons",
-        alt: "weapons",
-        routerLink: "weapons",
-      },
-      {
-        fileName: "cat_artifacts",
-        alt: "artifacts",
-        routerLink: "artifacts",
-      },
-    ],
-    // main menu
-    action: "characters",
-    mainMenuItems: [],
-    // item details
-    expandedItem: {},
-  },
+  state: state,
   getters: {},
-  mutations: {
-    // changes the action on navigation item click
-    setAction(state, action) {
-      state.action = action;
-    },
-    setItems(state, items) {
-      state.mainMenuItems = items;
-    },
-    getImgClass(state) {
-      switch (state.action) {
-        case "characters":
-          return "img_character";
-        case "weapons":
-          return "img_weapon";
-        case "artifacts":
-          return "img_artifact";
-      }
-    },
-    setExpandedItem(state, item) {
-      state.expandedItem = item;
-    },
-  },
-  actions: {
-    async loadItems({ state, commit }) {
-      const response = await Api().get(`/api/${state.action}`);
-      commit("setItems", await response.data);
-    },
-  },
+  mutations: mutations,
+  actions: actions,
   modules: {},
+  plugins: [vuexLocal.plugin],
 });
 
 // state: {

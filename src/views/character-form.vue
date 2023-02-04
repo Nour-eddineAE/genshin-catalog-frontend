@@ -2,11 +2,17 @@
   <!-- TODO create a model(two way binding) to collect data into js logic -->
   <section class="content margin-top-d">
     <form action="POST" class="newItem_form pad-d rounded-5">
-      <input type="text" name="name" id="itemName" placeholder="Name" />
+      <input
+        type="text"
+        name="name"
+        id="itemName"
+        :value="item.name"
+        placeholder="Name"
+      />
       <select name="rarity" id="itemRarity">
         <option value="" hidden>Please select a rarity</option>
         <option
-          v-for="i in [1, 2, 3, 4, 5]"
+          v-for="i in 5"
           :value="i"
           :selected="item && item.rarity === i ? 'selected' : false"
         >
@@ -121,18 +127,21 @@
         cols="30"
         rows="10"
         placeholder="Description"
-      ></textarea>
+        >{{ item.description }}</textarea
+      >
 
       <input
         type="text"
         name="profileImg"
         id="profileImg"
+        :value="item.imgSmall"
         placeholder="Thumbnail image link (example: https://paimon.moe/images/characters/albedo.png)"
       />
       <input
         type="text"
         name="detailImg"
         id="detailImg"
+        :value="item.imgFull"
         placeholder="Detailed image link (example: https://paimon.moe/images/characters/full/albedo.png)"
       />
       <ul class="errors">
@@ -146,5 +155,10 @@
 <script>
 export default {
   name: "character-form",
+  data() {
+    return {
+      item: this.$store.state.characterFormItem,
+    };
+  },
 };
 </script>
