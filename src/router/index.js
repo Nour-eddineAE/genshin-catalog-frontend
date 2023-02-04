@@ -8,6 +8,9 @@ import CharacterExpanded from "../views/character-expanded.vue";
 import WeaponExpanded from "../views/weapon-expanded.vue";
 import ArtifactExpanded from "../views/artifact-expanded.vue";
 import CharacterForm from "../views/character-form.vue";
+import WeaponForm from "../views/weapon-form.vue";
+import ArtifactForm from "../views/artifact-form.vue";
+import RemoveItem from "../views/remove-item.vue";
 const routes = [
   {
     path: "/",
@@ -67,6 +70,27 @@ const routes = [
     alias: ["/characters/update"],
     components: {
       operations: CharacterForm,
+    },
+  },
+  {
+    path: "/weapons/create",
+    alias: ["/weapons/update"],
+    components: {
+      operations: WeaponForm,
+    },
+  },
+  {
+    path: "/artifacts/create",
+    alias: ["/artifacts/update"],
+    components: {
+      operations: ArtifactForm,
+    },
+  },
+  {
+    path: "/characters/delete",
+    alias: ["/artifacts/delete", "/weapons/delete"],
+    components: {
+      operations: RemoveItem,
     },
   },
 ];

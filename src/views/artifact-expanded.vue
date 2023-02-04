@@ -22,9 +22,8 @@
         <p>{{ item.description }}</p>
 
         <div class="info_controls">
-          <!-- TODO update and delete artifact -->
-          <a href="">Update artifact</a>
-          <a href="">Delete artifact</a>
+          <router-link to="/artifacts/update">Update artifact</router-link>
+          <router-link to="/artifacts/delete">Delete artifact</router-link>
         </div>
       </div>
     </section>

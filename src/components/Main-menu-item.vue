@@ -6,7 +6,7 @@
   >
     <div :class="getStars">
       <img
-        :class="$store.commit('getImgClass')"
+        :class="getImgClass"
         :src="
           $store.state.action === 'characters'
             ? this.item.imgSmall
@@ -40,8 +40,16 @@ export default {
           return "star_5 card_img rounded-5-top";
       }
     },
+    getImgClass(state) {
+      switch (this.$store.state.action) {
+        case "characters":
+          return "img_character";
+        case "weapons":
+          return "img_weapon";
+        case "artifacts":
+          return "img_artifact";
+      }
+    },
   },
 };
 </script>
-
-<style scoped lang="scss"></style>

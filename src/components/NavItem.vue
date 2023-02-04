@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     async onNavButtonClick() {
-      // change content on click
+      // changing action
       this.$store.commit("setAction", this.routerLink);
       // reloading the items
       await this.$store.dispatch("loadItems");
@@ -39,5 +39,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss"></style>

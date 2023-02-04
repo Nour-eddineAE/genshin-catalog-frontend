@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-  <!-- *View appear inside this thing based on the nav item -->
+  <!-- ? for main menu items -->
   <router-view name="gallery"></router-view>
 </template>
 
@@ -16,5 +16,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss"></style>

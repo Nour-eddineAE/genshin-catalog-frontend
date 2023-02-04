@@ -9,6 +9,22 @@
         placeholder="Name"
         @click="info = ''"
       />
+      <input
+        type="text"
+        name="base_attack"
+        id="base_attack"
+        v-model="item.base_attack"
+        placeholder="Base attack"
+        @click="info = ''"
+      />
+      <input
+        type="text"
+        name="second_stat"
+        id="second_stat"
+        v-model="item.second_stat"
+        placeholder="Second stat"
+        @click="info = ''"
+      />
       <select
         v-model="item.rarity"
         name="rarity"
@@ -31,42 +47,12 @@
         </option>
       </select>
       <select
-        v-model="item.region.name"
-        name="region"
-        id="characterRegion"
-        @click="info = ''"
-      >
-        <option value="" hidden>Please select a region</option>
-        <option
-          v-for="region in $store.state.regions"
-          :value="region"
-          :selected="item && item.region.name === region ? 'selected' : false"
-        >
-          {{ region }}
-        </option>
-      </select>
-      <select
-        v-model="item.element.name"
-        name="element"
-        id="characterElement"
-        @click="info = ''"
-      >
-        <option value="" hidden>Please select an element</option>
-        <option
-          v-for="element in $store.state.elements"
-          :value="element"
-          :selected="item && item.element.name === element ? 'selected' : false"
-        >
-          {{ element }}
-        </option>
-      </select>
-      <select
         v-model="item.weaponType.name"
         name="weapon-type"
         id="characterWeaponType"
         @click="info = ''"
       >
-        <option value="" hidden>Please select weapon</option>
+        <option value="" hidden>Please select weapon type</option>
         <option
           v-for="weaponType in $store.state.weaponTypes"
           :value="weaponType"
@@ -78,29 +64,20 @@
         </option>
       </select>
       <textarea
-        name="description"
-        id="itemDescription"
+        name="passive"
+        id="itemPassive"
         cols="30"
         rows="10"
-        placeholder="Description"
-        v-model="item.description"
+        placeholder="Passive"
+        v-model="item.passive"
         @click="info = ''"
       ></textarea>
-
       <input
         type="text"
         name="profileImg"
         id="profileImg"
-        v-model="item.imgSmall"
-        placeholder="Thumbnail image link (example: https://paimon.moe/images/characters/albedo.png)"
-        @click="info = ''"
-      />
-      <input
-        type="text"
-        name="detailImg"
-        id="detailImg"
-        v-model="item.imgFull"
-        placeholder="Detailed image link (example: https://paimon.moe/images/characters/full/albedo.png)"
+        v-model="item.img"
+        placeholder="Image link (example: https://paimon.moe/images/weapons/the_catch.png)"
         @click="info = ''"
       />
       <ul class="errors">
@@ -110,8 +87,8 @@
         <button @click.prevent="$router.back()" class="formBtn rounded-5 pad-s">
           Cancel
         </button>
-        <button @click.prevent="saveCharacter" class="formBtn rounded-5 pad-s">
-          Save character
+        <button @click.prevent="saveWeapon" class="formBtn rounded-5 pad-s">
+          Save weapon
         </button>
       </div>
     </form>
@@ -120,7 +97,7 @@
 
 <script>
 export default {
-  name: "character-form",
+  name: "weapon-form",
   data() {
     return {
       item: {},
@@ -129,22 +106,21 @@ export default {
   },
   computed: {},
   methods: {
-    async saveCharacter() {
+    async saveWeapon() {
       const payload = {
         name: this.item.name,
         rarity: this.item.rarity,
-        regionName: this.item.region.name,
-        elementName: this.item.element.name,
+        base_attack: this.item.base_attack,
+        second_stat: this.item.second_stat,
         weaponTypeName: this.item.weaponType.name,
-        description: this.item.description,
-        imgSmall: this.item.imgSmall,
-        imgFull: this.item.imgFull,
+        passive: this.item.passive,
+        img: this.item.img,
       };
       try {
-        if (this.$route.fullPath === "/characters/create") {
+        if (this.$route.fullPath === "/weapons/create") {
           await this.$store.dispatch("createItem", payload);
           this.info = "saved";
-        } else if (this.$route.fullPath === "/characters/update") {
+        } else if (this.$route.fullPath === "/weapons/update") {
           await this.$store.dispatch("updateItem", {
             _id: this.item._id,
             payload,
@@ -160,18 +136,17 @@ export default {
   },
   created() {
     // initialize form
-    if (this.$route.fullPath === "/characters/update") {
+    if (this.$route.fullPath === "/weapons/update") {
       this.item = this.$store.state.expandedItem;
-    } else if (this.$route.fullPath === "/characters/create") {
+    } else if (this.$route.fullPath === "/weapons/create") {
       this.item = {
         name: "",
         rarity: 0,
-        region: { name: "" },
-        element: { name: "" },
+        base_attack: "",
+        second_stat: "",
         weaponType: { name: "" },
-        description: "",
-        imgSmall: "",
-        imgFull: "",
+        passive: "",
+        img: "",
       };
     }
   },

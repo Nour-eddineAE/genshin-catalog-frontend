@@ -19,7 +19,9 @@
           </svg>
           <img
             :src="
-              'https://paimon.moe/images/elements/' + item.element.name + '.png'
+              'https://paimon.moe/images/elements/' +
+              item.element.name.toLowerCase() +
+              '.png'
             "
             :alt="item.element.name"
           />
@@ -34,13 +36,8 @@
         </p>
 
         <div class="info_controls">
-          <!-- TODO update and delete character -->
-          <router-link
-            to="/characters/update"
-            @click="$store.commit('setCharacterFormItem', item)"
-            >Update character</router-link
-          >
-          <router-link to="">Delete character</router-link>
+          <router-link to="/characters/update">Update character</router-link>
+          <router-link to="/characters/delete">Delete character</router-link>
         </div>
       </div>
     </section>

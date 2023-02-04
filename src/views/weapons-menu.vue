@@ -1,7 +1,7 @@
 <template>
   <section class="content">
     <section class="item_container rounded-5 pad-d">
-      <router-link to="" class="card rounded-5">
+      <router-link to="/weapons/create" class="card rounded-5">
         <div class="card_img rounded-5-top createItem">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path
@@ -24,9 +24,6 @@ export default {
   components: {
     MainMenuItem,
   },
-  // async created() {
-  //   await this.$store.dispatch("loadItems");
-  // },
 };
 </script>
 

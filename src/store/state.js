@@ -22,8 +22,12 @@ export default {
   // main menu
   action: "characters",
   mainMenuItems: [],
-  // item details
+  // item details // used to store expanded item's data // changes based on action's value
   expandedItem: {},
-  // character form
-  characterFormItem: {},
+  //Regions
+  regions: ["Monstadt", "Liyue", "Inazuma"],
+  // Elements
+  elements: ["Anemo", "Geo", "Hydro", "Pyro", "Cryo", "Dendro"],
+  // Weapon types
+  weaponTypes: ["Sword", "Polearm", "Bow", "Catalyst"],
 };

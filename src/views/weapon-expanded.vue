@@ -32,9 +32,8 @@
         </p>
 
         <div class="info_controls">
-          <!-- TODO update and delete weapon -->
-          <a href="">Update weapon</a>
-          <a href="">Delete weapon</a>
+          <router-link to="/weapons/update">Update weapon</router-link>
+          <router-link to="/weapons/delete">Delete weapon</router-link>
         </div>
       </div>
     </section>
