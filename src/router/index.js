@@ -24,7 +24,6 @@ const routes = [
         redirect: "/characters",
       },
       {
-        // these three components are what we want to render in the router-view named gallery
         path: "/characters",
         name: "Characters",
         components: {

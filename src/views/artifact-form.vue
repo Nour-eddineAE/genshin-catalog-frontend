@@ -56,7 +56,7 @@
           Cancel
         </button>
         <button @click.prevent="saveArtifact" class="formBtn rounded-5 pad-s">
-          Save character
+          Save artifact
         </button>
       </div>
     </form>
